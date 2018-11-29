@@ -8,8 +8,8 @@ if [ ! -e .env.test ] ; then
   cp .env.test.example .env.test
 fi
 
-if [ ! -e .env.dev ] ; then
-  cp .env.dev.example .env.dev
+if [ ! -e .env.development ] ; then
+  cp .env.development.example .env.development
 fi
 
 # copy example database
@@ -40,10 +40,9 @@ else
 fi
 
 bundle exec yarn
+bundle exec rake webpacker:install
 bundle exec rake webpacker:compile
 bundle exec rake spec
-bundle exec teaspoon
-bundle exec rake brakeman:run
 
 echo "[SUCCESS] You should now be able to try it out:"
 echo "  bin/run"

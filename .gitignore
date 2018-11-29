@@ -32,3 +32,6 @@
 
 .env.test
 .env.development
+/public/packs
+/public/packs-test
+/node_modules
