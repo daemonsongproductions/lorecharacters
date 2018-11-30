@@ -4,9 +4,13 @@ import React from 'react';
 export default class LandingContainer extends React.Component {
   render () {
     return(
-        <article className="u-stack--xl next-fix">
-      hi
-    </article>
+      <document>
+        <header>
+          <h1>Lore Character Builder</h1>
+        </header>
+        <section>{this.props.message}</section>
+      </document>
+
     )
   }
 }
