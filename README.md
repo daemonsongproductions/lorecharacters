@@ -22,7 +22,15 @@ ALTER USER lorecharacters_owner with SUPERUSER;
 
 ```
 
-* Database initialization
+* Application setup
+
+Just run `bin/setup`, which should take care of getting things installed and ready to run.
+
+If you've pulled down new code but your application is otherwise set up, a combination of: `bundle install`, `yarn`, and `rake db:migrate` should get you there. 
+
+* How to run the application locally
+
+`bin/run` will kick you off. Under the hood, it's executing `foreman start`, which will kick off any processes in the Procfile. The web process typically runs at `localhost:5000`.
 
 * How to run the test suite
 
