@@ -1,6 +1,6 @@
 import React from "react"
 import {connect} from "react-redux"
-import {fetchDate} from '../../actions/landing'
+import {fetchDate} from '../actions/landing'
 import ApplicationStatus from './applicationStatus'
 
 const mapStateToProps = (
