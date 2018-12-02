@@ -4,4 +4,11 @@ class HomeController < ApplicationController
 
   end
 
+  def show
+    render json: {
+        status: 'green',
+        time: Time.zone.now
+    }
+  end
+
 end
