@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import {Provider} from 'react-redux'
 import configureStore from './store/configureStore'
 import {fetchDate} from './actions/landing'
-import LandingContainer from "./components/landing";
+import LandingContainer from "./components/landing/landingContainer";
 
 let store = configureStore({
   time: Date.now()
@@ -11,12 +11,12 @@ let store = configureStore({
 store.dispatch(fetchDate());
 
 
-const landing = (
+const index = (
     <Provider store={store}>
       <LandingContainer/>
     </Provider>
 );
 
 
-render(landing, document.getElementById('chargen-application-status'))
+render(index, document.getElementById('chargen-application-status'))
 
