@@ -1,10 +1,7 @@
 import React from 'react'
-import {Provider} from 'react-redux'
 import moment from 'moment'
 
 export default class ApplicationStatus extends React.Component {
-
-
 
   render() {
     return(
