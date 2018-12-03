@@ -1,0 +1,42 @@
+.bg-blueprint {
+  $base-blueprint: $base-blue;
+
+  background-color: transparent !important;
+  background-image: linear-gradient(rgba($base-blueprint, 0.1) 1px, transparent 1px) !important;
+  background-size: 1rem 1rem !important;
+  background-position: top center !important;
+
+  div, h1, h2, h3, h4, h5, h6, p, section, article, header, footer, ul, ol, dl, li, td, tr, th, label, input, fieldset, aside {
+    outline: 1px solid rgba($base-blueprint, 0.3);
+    background-color: rgba($base-blueprint, 0.1);
+    background-image: linear-gradient(rgba($base-blueprint, 0.1) 1px, transparent 1px) !important;
+    background-size: 1rem 1rem !important;
+    background-position: top center !important;
+  }
+}
+
+.test-grid {
+  @extend %grid, %grid-reverse;
+
+  > div {
+    @extend %g, %_1-2;
+  }
+}
+
+.bg-dark {
+  background-color: $base-gray;
+}
+
+@include button_style(
+  "tangerine",
+  $base-tangerine,
+  $border-width: 4px
+);
+
+@include button_size(1, "xs2");
+@include button_size(2, "sm2");
+@include button_size(3, "md2");
+@include button_size(4, "lg2");
+@include button_size(5, "xl2");
+@include button_size(7, "xxl");
+@include button_size(10, "xxxl");

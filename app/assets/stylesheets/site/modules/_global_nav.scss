@@ -1,0 +1,62 @@
+.global-nav {
+
+  @extend %bg-ghost-white-dark !optional;
+  @extend %border-b !optional;
+  @extend %border-gray-light !optional;
+
+  @extend %pos-fix !optional;
+  @extend %pos-t !optional;
+  @extend %pos-l !optional;
+  @extend %pos-r !optional;
+  @extend %z10 !optional;
+
+  ul {
+    @extend %list-condensed !optional;
+    @extend %list-inline !optional;
+    @extend %text-c !optional;
+
+    li {
+
+      a {
+        @extend %light !optional;
+        @extend %text-l-xs !optional;
+        @extend %round-none !optional;
+
+        @extend %m0 !optional;
+        padding-left:  0.5rem !important;
+        padding-right: 0.5rem !important;
+
+        &:link,
+        &:visited,
+        &:hover,
+        &:active {
+          color: rgba(black,0.5);
+        }
+
+        @include at_breakpoint(xs) {
+          width: 100%;
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+        }
+      }
+
+      &:first-child {
+        @extend %left !optional;
+      }
+
+      &:last-child {
+        @extend %right !optional;
+      }
+
+    }
+  }
+
+  .nav-logo {
+    @extend %left !optional;
+    opacity: 0.5;
+    width: 2rem;
+    height: calc(3rem - 2px);
+    vertical-align: middle;
+    display: table-cell;
+  }
+}
