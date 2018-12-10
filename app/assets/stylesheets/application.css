@@ -16,6 +16,7 @@
 /* Theme
    ========================================================================== */
 
+@import 'bootstrap/dist/css/bootstrap.min.css';
 @import "site/external.scss";
 @import "site/bg-testing";
 @import "site/testing.scss";

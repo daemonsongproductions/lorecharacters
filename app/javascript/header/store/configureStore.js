@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import landingReducer from '../reducers/landing'
+import headerReducer from '../reducers/header'
 import thunkMiddleware from 'redux-thunk'
 
 export default function configureStore (initialState = {}) {
@@ -10,7 +10,7 @@ export default function configureStore (initialState = {}) {
       thunkMiddleware
   )(create);
 
-  const store = createStoreWithMiddleware(landingReducer, initialState);
+  const store = createStoreWithMiddleware(headerReducer, initialState);
 
-  return store
+  return store;
 }
