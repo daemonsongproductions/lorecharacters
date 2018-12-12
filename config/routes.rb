@@ -4,5 +4,8 @@ Rails.application.routes.draw do
 
   get '/status', to: 'home#show', as: 'application_status'
 
+  resources :sessions, only: [:index, :create]
+  resources :users, only: [:show, :new, :create]
+
   root 'home#index'
 end

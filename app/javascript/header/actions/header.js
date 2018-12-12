@@ -1,29 +1,29 @@
 import axios from 'axios'
 
-export const fetchDate = (clientId) => (dispatch, getState) => {
+export const fetchAccountInfo = () => (dispatch, getState) => {
 
-  dispatch(fetchingDate(true));
+  dispatch(fetchingAccountInfo(true));
 
-  return axios.get(`/status.json`)
+  return axios.get(`/sessions.json`)
       .then(response => {
         dispatch({
-          type: 'FETCHED_DATE',
-          time: response.data.time,
-          status: response.data.status,
+          type: 'FETCHED_ACCOUNT_INFO',
+          user_id: response.data.user_id,
+          status: response.data.username,
         });
-        dispatch(fetchingDate(false));
+        dispatch(fetchingAccountInfo(false));
       })
 
       .catch(error => {
         console.log(error)
-        dispatch(fetchingDate(false));
+        dispatch(fetchingAccountInfo(false));
       });
 };
 
 
-export function fetchingDate(fetching) {
+export function fetchingAccountInfo(fetching) {
   return {
-    type: 'FETCHING_DATE',
+    type: 'FETCHING_ACCOUNT_INFO',
     fetching
   }
 };

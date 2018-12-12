@@ -2,13 +2,14 @@ import React from 'react'
 import { render } from 'react-dom'
 import {Provider} from 'react-redux'
 import configureStore from './store/configureStore'
-import {fetchDate} from './actions/header'
+import {fetchAccountInfo} from './actions/header'
 import HeaderContainer from "./components/headerContainer";
 
 let store = configureStore({
-  time: Date.now()
-})
-store.dispatch(fetchDate());
+  email: null,
+  username: null
+});
+store.dispatch(fetchAccountInfo());
 
 
 const index = (

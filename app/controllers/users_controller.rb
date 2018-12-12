@@ -2,6 +2,18 @@ class UsersController < ApplicationController
 
   def show
 
+    if user_signed_in?
+      render json: {
+          email: current_user.email,
+          username: 'test'
+      }
+    else
+      render json: {
+          email: '',
+          username: ''
+      }
+    end
+
   end
 
   def new
@@ -13,7 +25,9 @@ class UsersController < ApplicationController
     else
       render json: {
           can_register: false,
-          reason: 'signed_in'
+          reason: 'signed_in',
+          email: current_user.email,
+          username: 'test'
       }
     end
 

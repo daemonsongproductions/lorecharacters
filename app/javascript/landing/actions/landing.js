@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const fetchDate = (clientId) => (dispatch, getState) => {
+export const fetchDate = () => (dispatch, getState) => {
 
   dispatch(fetchingDate(true));
 

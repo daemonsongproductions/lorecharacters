@@ -1,19 +1,23 @@
 const initialState =
     {
-
+      email: "",
+      username: ""
     };
 
 
 const headerReducer = (state = initialState, action) => {
 
-  var messageType, status;
 
   console.log(action)
   switch (action.type) {
+    case 'FETCHING_ACCOUNT_INFO':
+      return {...state, fetchingDate: action.fetching}
+    case 'FETCHED_ACCOUNT_INFO':
+      return {...state, time: action.time, status: action.status}
     default:
       return state
   }
-}
+};
 
 function updateMessages(messages, messageType, newMessage) {
 

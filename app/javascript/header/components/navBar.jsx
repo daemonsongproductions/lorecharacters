@@ -1,4 +1,5 @@
 import React from 'react'
+import SignInForm from './signInForm'
 import {
   Collapse,
   Navbar,
@@ -29,6 +30,14 @@ export default class NavBar extends React.Component {
     });
   }
 
+  accountDropdownText() {
+    if(!this.state.email || /^\s*$/.test(!this.state.email)) {
+      return "Account"
+    } else {
+      return this.state.email
+    }
+  }
+
   render() {
     return(
         <div>
@@ -38,25 +47,18 @@ export default class NavBar extends React.Component {
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <NavLink href="/components/">Components</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                  <NavLink href="http://lorelarp.net">Lore Larp</NavLink>
                 </NavItem>
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret>
-                    Options
+                    {this.accountDropdownText()}
                   </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem>
-                      Option 1
+                      <NavLink href="sessions/new">Sign In</NavLink>
                     </DropdownItem>
                     <DropdownItem>
-                      Option 2
-                    </DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem>
-                      Reset
+                      <NavLink href="users/new">Register</NavLink>
                     </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
