@@ -1,5 +1,5 @@
 import React from 'react'
-import SignInForm from './signInForm'
+import SignInForm from '../../../components/signInForm'
 import {
   Collapse,
   Navbar,

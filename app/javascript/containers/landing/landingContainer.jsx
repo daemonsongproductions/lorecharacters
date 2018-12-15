@@ -1,7 +1,7 @@
 import React from "react"
 import {connect} from "react-redux"
-import {fetchDate} from '../actions/landing'
-import ApplicationStatus from './applicationStatus'
+import {fetchDate} from './actions'
+import ApplicationStatus from './components/applicationStatus'
 
 const mapStateToProps = (
     state
@@ -9,7 +9,7 @@ const mapStateToProps = (
   return {
     ...state
   }
-}
+};
 
 const mapDispatchToProps = (
     dispatch
@@ -19,12 +19,12 @@ const mapDispatchToProps = (
       dispatch(fetchDate())
     }
   }
-}
+};
 
 const ApplicationStatusComponent = connect(
     mapStateToProps,
     mapDispatchToProps
-)(ApplicationStatus)
+)(ApplicationStatus);
 
 
 

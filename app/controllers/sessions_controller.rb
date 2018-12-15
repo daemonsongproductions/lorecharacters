@@ -16,6 +16,12 @@ class SessionsController < ApplicationController
 
   end
 
+  def new
+
+    redirect_to root_path if user_signed_in?
+
+  end
+
 
   def create
 

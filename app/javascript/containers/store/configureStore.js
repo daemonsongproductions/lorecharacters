@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import landingReducer from '../reducers/landing'
+import rootReducer from '../reducers/rootReducer'
 import thunkMiddleware from 'redux-thunk'
 
-export default function configureStore (initialState = {}) {
+export default function configureStore () {
 
   const create = window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore
 
@@ -10,7 +10,7 @@ export default function configureStore (initialState = {}) {
       thunkMiddleware
   )(create);
 
-  const store = createStoreWithMiddleware(landingReducer, initialState);
+  const store = createStoreWithMiddleware(rootReducer);
 
   return store
 }

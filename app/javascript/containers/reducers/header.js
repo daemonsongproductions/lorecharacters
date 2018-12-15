@@ -1,24 +1,23 @@
-const initialState =
+const defaultState =
     {
-      time: null,
-      status: 'unknown'
+      email: "",
+      username: ""
     };
 
 
-const landingReducer = (state = initialState, action) => {
+const headerReducer = (state = defaultState, action) => {
 
-  var messageType, status;
 
   console.log(action)
   switch (action.type) {
-    case 'FETCHING_DATE':
+    case 'FETCHING_ACCOUNT_INFO':
       return {...state, fetchingDate: action.fetching}
-    case 'FETCHED_DATE':
+    case 'FETCHED_ACCOUNT_INFO':
       return {...state, time: action.time, status: action.status}
     default:
       return state
   }
-}
+};
 
 function updateMessages(messages, messageType, newMessage) {
 
@@ -26,4 +25,4 @@ function updateMessages(messages, messageType, newMessage) {
   return [...newMessages, newMessage]
 }
 
-export default landingReducer
+export default headerReducer

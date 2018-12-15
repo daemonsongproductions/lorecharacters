@@ -1,7 +1,7 @@
 import React from "react"
 import {connect} from "react-redux"
-import {fetchDate} from '../actions/header'
-import NavBar from './navBar'
+import {fetchAccountInfo} from './actions'
+import NavBar from './components/navBar'
 
 const mapStateToProps = (
     state
@@ -9,22 +9,22 @@ const mapStateToProps = (
   return {
     ...state
   }
-}
+};
 
 const mapDispatchToProps = (
     dispatch
 ) => {
   return {
     fetchDate: () => {
-      dispatch(fetchDate())
+      dispatch(fetchAccountInfo())
     }
   }
-}
+};
 
 const NavBarComponent = connect(
     mapStateToProps,
     mapDispatchToProps
-)(NavBar)
+)(NavBar);
 
 
 
