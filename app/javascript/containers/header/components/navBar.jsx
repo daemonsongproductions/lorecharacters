@@ -1,5 +1,5 @@
 import React from 'react'
-import SignInForm from '../../../components/signInForm'
+import SignInForm from '../../signin/components/signInForm'
 import {
   Collapse,
   Navbar,
@@ -55,7 +55,7 @@ export default class NavBar extends React.Component {
                   </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem>
-                      <NavLink href="sessions/new">Sign In</NavLink>
+                      <NavLink href="sign_in/">Sign In</NavLink>
                     </DropdownItem>
                     <DropdownItem>
                       <NavLink href="users/new">Register</NavLink>

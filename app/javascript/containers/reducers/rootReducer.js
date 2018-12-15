@@ -2,11 +2,13 @@ import { combineReducers} from 'redux'
 
 import landingState from './landing'
 import headerState from './header'
+import signInState from './signin'
 
 
 const rootReducer = combineReducers({
-  landingState, // specific key name instead of the variable name
-  headerState // key name same as the carefully renamed named export
+  landingState,
+  headerState,
+  signInState
 });
 
 
