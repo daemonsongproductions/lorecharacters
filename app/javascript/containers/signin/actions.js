@@ -25,3 +25,10 @@ export function signingIn(signingIn) {
     signingIn
   }
 };
+
+export function switchForms(formId) {
+  return {
+    type: 'SWITCH_FORMS',
+    formId
+  }
+}

@@ -1,8 +1,8 @@
 import React from "react"
 import {connect} from "react-redux"
-import {signIn} from './actions'
+import {signIn, switchForms} from './actions'
 import {Container} from 'reactstrap';
-import SignInForm from './components/signInForm'
+import AccountForms from './components/accountForms'
 
 const mapStateToProps = (
     state
@@ -18,14 +18,17 @@ const mapDispatchToProps = (
   return {
     signIn: () => {
       dispatch(signIn())
+    },
+    switchForms: (formId) => {
+      dispatch(switchForms(formId))
     }
   }
 };
 
-const SignInFormComponent = connect(
+const AccountFormsComponent = connect(
     mapStateToProps,
     mapDispatchToProps
-)(SignInForm);
+)(AccountForms);
 
 
 
@@ -33,7 +36,7 @@ export default class SignInContainer extends React.Component {
   render () {
     return(
         <Container>
-          <SignInFormComponent/>
+          <AccountFormsComponent/>
         </Container>
     )
   }
