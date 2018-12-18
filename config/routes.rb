@@ -5,7 +5,13 @@ Rails.application.routes.draw do
   get '/status', to: 'home#show', as: 'application_status'
   get '/sign_in', to: 'sign_in#show', as: 'sign_in'
 
-  resources :sessions, only: [:index, :create]
+  devise_for :users, :controllers => {
+
+      :registrations => "users/registrations",
+      :sessions => "users/sessions"
+
+  }
+
   resources :users, only: [:show, :new, :create]
 
   root 'home#index'
