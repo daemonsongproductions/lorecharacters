@@ -2,7 +2,7 @@ import React from 'react'
 import {Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 const SignInForm = props => (
-    <Form>
+    <Form className={"m-3"}>
       <FormGroup>
         <Label for="exampleEmail">Email</Label>
         <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />

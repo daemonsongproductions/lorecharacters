@@ -4,7 +4,7 @@ import {Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 
 const RegistrationForm = ({signInState, submit, handleFormChange}) => (
-    <Form>
+    <Form className={"m-3"}>
       <TextInput handleChange={(newValue) => handleFormChange('email', newValue)}
                  id={"registrationEmail"} name={"email"}
                  label={"Email"} type={'email'} value={signInState.formData.email} placeholder={'Email'} />
