@@ -18,6 +18,36 @@ export const signIn = () => (dispatch, getState) => {
       });
 };
 
+export const submitRegistration = (email, password, password_confirmation) => (dispatch, getState) => {
+
+  dispatch(registering(true));
+
+  return axios.post('/users.json')
+      .then(response => {
+        dispatch({
+          type: 'REGISTERED',
+          userId: response.data.user_id,
+          errorMessage: null
+        });
+        dispatch(registering(false));
+      })
+      .catch(error => {
+        dispatch({
+          type: 'REGISTRATION_FAILURE',
+          errorMessage: error.response.data.message
+        });
+        dispatch(registering(false));
+      });
+
+};
+
+export function handleFormChange(fieldName, fieldValue) {
+  return {
+    type: 'FORM_FIELD_CHANGE',
+    fieldName,
+    fieldValue
+  }
+};
 
 export function signingIn(signingIn) {
   return {
@@ -25,6 +55,14 @@ export function signingIn(signingIn) {
     signingIn
   }
 };
+
+
+export function registering(registering) {
+  return {
+    type: 'REGISTERING',
+    registering
+  }
+}
 
 export function switchForms(formId) {
   return {

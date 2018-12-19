@@ -31,7 +31,7 @@ const AccountForms = props => (
           <SignInForm/>
         </TabPane>
         <TabPane tabId="2">
-          <RegistrationForm/>
+          <RegistrationForm signInState={props.signInState} submit={props.submitRegistration} handleFormChange={props.handleFormChange}/>
         </TabPane>
       </TabContent>
     </div>

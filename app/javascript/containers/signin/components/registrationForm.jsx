@@ -1,25 +1,20 @@
 import React from 'react'
+import TextInput from '../../../shared/components/textInput'
 import {Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
-const RegistrationForm = props => (
+
+const RegistrationForm = ({signInState, submit, handleFormChange}) => (
     <Form>
-      <FormGroup>
-        <Label for="registrationEmail">Email</Label>
-        <Input type="email" name="email" id="registrationEmail" placeholder="Email" />
-      </FormGroup>
-      <FormGroup>
-        <Label for="registrationName">Player Name</Label>
-        <Input type="text" name="name" id="registrationName" placeholder="Name" />
-      </FormGroup>
-      <FormGroup>
-        <Label for="registrationPassword">Password</Label>
-        <Input type="password" name="password" id="registrationPassword" placeholder="Choose a password" />
-      </FormGroup>
-      <FormGroup>
-        <Label for="confirmPassword">Confirm Password</Label>
-        <Input type="password" name="confirmPassword" id="confirmPassword" placeholder="Retype password" />
-      </FormGroup>
-      <Button>Submit</Button>
+      <TextInput handleChange={(newValue) => handleFormChange('email', newValue)}
+                 id={"registrationEmail"} name={"email"}
+                 label={"Email"} type={'email'} value={signInState.formData.email} placeholder={'Email'} />
+      <TextInput handleChange={(newValue) => handleFormChange('password', newValue)}
+                 id={"registrationPassword"} name={"password"}
+                 label={"Password"} type={'password'} value={signInState.formData.password} placeholder={'Choose a password'} />
+      <TextInput handleChange={(newValue) => handleFormChange('confirmPassword', newValue)}
+                 id={"confirmPassword"} name={"confirmPassword"}
+                 label={"Password"} type={'password'} value={signInState.formData.confirmPassword} placeholder={'Retype password'} />
+      <Button onClick={submit}>Submit</Button>
     </Form>
 );
 
