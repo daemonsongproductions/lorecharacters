@@ -1,10 +1,10 @@
-import axios from 'axios'
+import ax from 'packs/axios'
 
 export const signIn = () => (dispatch, getState) => {
 
   dispatch(signingIn(true));
 
-  return axios.get(`/status.json`)
+  return ax.get(`/status.json`)
       .then(response => {
         dispatch({
           type: 'SIGNED_IN'
@@ -21,8 +21,16 @@ export const signIn = () => (dispatch, getState) => {
 export const submitRegistration = (email, password, password_confirmation) => (dispatch, getState) => {
 
   dispatch(registering(true));
+  const state = getState();
+  const formData = state.signInState.formData
 
-  return axios.post('/users.json')
+  return ax.post('/users.json', {
+    user: {
+      email: formData.email,
+      password: formData.password,
+      password_confirmation: formData.confirmPassword
+    }
+  })
       .then(response => {
         dispatch({
           type: 'REGISTERED',
