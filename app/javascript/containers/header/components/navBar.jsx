@@ -31,11 +31,40 @@ export default class NavBar extends React.Component {
   }
 
   accountDropdownText() {
-    if(!this.state.email || /^\s*$/.test(!this.state.email)) {
-      return "Account"
+    if(this.userSignedIn()) {
+      return this.props.headerState.email
     } else {
-      return this.state.email
+      return "Account"
     }
+  }
+
+  accoundDropdownOptions() {
+    if(this.userSignedIn()) {
+      return(
+        <DropdownMenu right>
+          <DropdownItem>
+            <NavLink href="/users/sign_out">Sign out</NavLink>
+          </DropdownItem>
+        </DropdownMenu>
+      )
+
+    } else {
+     return(
+       <DropdownMenu right>
+         <DropdownItem>
+           <NavLink href="/sign_in/">Sign In</NavLink>
+         </DropdownItem>
+       </DropdownMenu>
+     )
+    }
+  }
+
+  userSignedIn() {
+    return this.props.headerState.signedIn
+  }
+
+  componentDidMount() {
+    this.props.fetchAccountInfo();
   }
 
   render() {
@@ -53,14 +82,7 @@ export default class NavBar extends React.Component {
                   <DropdownToggle nav caret>
                     {this.accountDropdownText()}
                   </DropdownToggle>
-                  <DropdownMenu right>
-                    <DropdownItem>
-                      <NavLink href="sign_in/">Sign In</NavLink>
-                    </DropdownItem>
-                    <DropdownItem>
-                      <NavLink href="users/new">Register</NavLink>
-                    </DropdownItem>
-                  </DropdownMenu>
+                  {this.accoundDropdownOptions()}
                 </UncontrolledDropdown>
               </Nav>
             </Collapse>

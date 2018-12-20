@@ -38,6 +38,7 @@ export const submitRegistration = (email, password, password_confirmation) => (d
           errorMessage: null
         });
         dispatch(registering(false));
+        window.location.href="/"
       })
       .catch(error => {
         dispatch({

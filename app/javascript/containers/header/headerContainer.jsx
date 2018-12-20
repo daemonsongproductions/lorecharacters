@@ -15,7 +15,7 @@ const mapDispatchToProps = (
     dispatch
 ) => {
   return {
-    fetchDate: () => {
+    fetchAccountInfo: () => {
       dispatch(fetchAccountInfo())
     }
   }

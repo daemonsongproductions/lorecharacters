@@ -4,12 +4,12 @@ export const fetchAccountInfo = () => (dispatch, getState) => {
 
   dispatch(fetchingAccountInfo(true));
 
-  return axios.get(`/sessions.json`)
+  return axios.get(`/users.json`)
       .then(response => {
         dispatch({
           type: 'FETCHED_ACCOUNT_INFO',
-          user_id: response.data.user_id,
-          status: response.data.username,
+          email: response.data.email,
+          signedIn: response.data.signed_in
         });
         dispatch(fetchingAccountInfo(false));
       })
