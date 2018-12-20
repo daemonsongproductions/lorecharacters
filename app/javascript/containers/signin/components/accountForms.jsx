@@ -28,7 +28,7 @@ const AccountForms = props => (
       </Nav>
       <TabContent activeTab={props.signInState.activeFormId}>
         <TabPane tabId="1">
-          <SignInForm/>
+          <SignInForm signInState={props.signInState} submit={props.signIn} handleFormChange={props.handleFormChange} />
         </TabPane>
         <TabPane tabId="2">
           <RegistrationForm signInState={props.signInState} submit={props.submitRegistration} handleFormChange={props.handleFormChange}/>

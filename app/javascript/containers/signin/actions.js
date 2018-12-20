@@ -3,13 +3,20 @@ import ax from 'packs/axios'
 export const signIn = () => (dispatch, getState) => {
 
   dispatch(signingIn(true));
-
-  return ax.get(`/status.json`)
+  const state = getState();
+  const formData = state.signInState.formData;
+  return ax.post(`/users/sign_in.json`, {
+    user: {
+      email: formData.email,
+      password: formData.password,
+    }
+  })
       .then(response => {
         dispatch({
           type: 'SIGNED_IN'
         });
         dispatch(signingIn(false));
+        window.location.href="/";
       })
 
       .catch(error => {
@@ -18,11 +25,11 @@ export const signIn = () => (dispatch, getState) => {
       });
 };
 
-export const submitRegistration = (email, password, password_confirmation) => (dispatch, getState) => {
+export const submitRegistration = () => (dispatch, getState) => {
 
   dispatch(registering(true));
   const state = getState();
-  const formData = state.signInState.formData
+  const formData = state.signInState.formData;
 
   return ax.post('/users.json', {
     user: {

@@ -1,6 +1,6 @@
 import React from 'react'
 import TextInput from '../../../shared/components/textInput'
-import {Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import {Button, Form } from 'reactstrap';
 
 
 const RegistrationForm = ({signInState, submit, handleFormChange}) => (

@@ -1,17 +1,16 @@
 import React from 'react'
-import {Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import TextInput from '../../../shared/components/textInput'
+import {Button, Form } from 'reactstrap';
 
-const SignInForm = props => (
+const SignInForm = ({signInState, submit, handleFormChange}) => (
     <Form className={"m-3"}>
-      <FormGroup>
-        <Label for="exampleEmail">Email</Label>
-        <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
-      </FormGroup>
-      <FormGroup>
-        <Label for="examplePassword">Password</Label>
-        <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
-      </FormGroup>
-      <Button>Submit</Button>
+      <TextInput handleChange={(newValue) => handleFormChange('email', newValue)}
+                 id={"registrationEmail"} name={"email"}
+                 label={"Email"} type={'email'} value={signInState.formData.email} placeholder={'Email'} />
+      <TextInput handleChange={(newValue) => handleFormChange('password', newValue)}
+                 id={"registrationPassword"} name={"password"}
+                 label={"Password"} type={'password'} value={signInState.formData.password} placeholder={'Choose a password'} />
+      <Button onClick={submit}>Submit</Button>
     </Form>
 );
 

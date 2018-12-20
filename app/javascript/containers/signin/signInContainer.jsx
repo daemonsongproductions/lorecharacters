@@ -22,8 +22,8 @@ const mapDispatchToProps = (
     signIn: () => {
       dispatch(signIn())
     },
-    submitRegistration: (email, password, password_confirmation) => {
-      dispatch(submitRegistration(email, password, password_confirmation))
+    submitRegistration: () => {
+      dispatch(submitRegistration())
     },
     switchForms: (formId) => {
       dispatch(switchForms(formId))
