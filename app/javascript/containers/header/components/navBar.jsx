@@ -1,5 +1,4 @@
 import React from 'react'
-import AccountForms from '../../signin/components/accountForms'
 import {
   Collapse,
   Navbar,
@@ -43,7 +42,7 @@ export default class NavBar extends React.Component {
       return(
         <DropdownMenu right>
           <DropdownItem>
-            <NavLink href="/users/sign_out">Sign out</NavLink>
+            <NavLink onClick={this.props.signUserOut}>Sign out</NavLink>
           </DropdownItem>
         </DropdownMenu>
       )

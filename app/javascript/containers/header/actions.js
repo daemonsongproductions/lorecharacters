@@ -1,10 +1,10 @@
-import axios from 'axios'
+import ax from 'packs/axios'
 
 export const fetchAccountInfo = () => (dispatch, getState) => {
 
   dispatch(fetchingAccountInfo(true));
 
-  return axios.get(`/users.json`)
+  return ax.get(`/users.json`)
       .then(response => {
         dispatch({
           type: 'FETCHED_ACCOUNT_INFO',
@@ -18,6 +18,15 @@ export const fetchAccountInfo = () => (dispatch, getState) => {
         console.log(error)
         dispatch(fetchingAccountInfo(false));
       });
+};
+
+export const signUserOut = () => (dispatch, getState) => {
+
+  return ax.delete('/users/sign_out.json')
+      .then(response => {
+        window.location.href="/"
+      })
+
 };
 
 

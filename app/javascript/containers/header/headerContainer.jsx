@@ -1,6 +1,6 @@
 import React from "react"
 import {connect} from "react-redux"
-import {fetchAccountInfo} from './actions'
+import {fetchAccountInfo, signUserOut} from './actions'
 import NavBar from './components/navBar'
 
 const mapStateToProps = (
@@ -17,6 +17,9 @@ const mapDispatchToProps = (
   return {
     fetchAccountInfo: () => {
       dispatch(fetchAccountInfo())
+    },
+    signUserOut: () => {
+      dispatch(signUserOut());
     }
   }
 };
