@@ -33,7 +33,9 @@ const signInReducer = (state = defaultState, action) => {
     case 'SIGNING_IN':
       return {...state, signingIn: action.signingIn};
     case 'SIGNED_IN':
-      return {...state, time: action.time, status: action.status};
+      return {...state};
+    case 'SIGN_IN_FAILURE':
+      return {...state, errorMessage: action.errorMessage};
     case 'SWITCH_FORMS':
       return {...state, activeFormId: action.formId};
     default:

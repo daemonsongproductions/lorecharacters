@@ -20,7 +20,10 @@ export const signIn = () => (dispatch, getState) => {
       })
 
       .catch(error => {
-        console.log(error)
+        dispatch({
+          type: 'SIGN_IN_FAILURE',
+          errorMessage: error.response.data.error
+        });
         dispatch(signingIn(false));
       });
 };

@@ -1,13 +1,24 @@
 import React from 'react'
-import {Button, Form, FormGroup, Label, Input,
-  FormText, Nav, TabContent, NavItem, NavLink,
-  TabPane, Row, Col, Card, CardTitle, CardText } from 'reactstrap';
+import {Nav, TabContent, NavItem, NavLink,
+  TabPane, Alert } from 'reactstrap';
 import classnames from 'classnames';
 import RegistrationForm from './registrationForm';
 import SignInForm from './signInForm';
 
+
+function errorMessage(message) {
+  if(message) {
+    return(
+        <Alert color="danger">
+          {message}
+        </Alert>
+    )
+  }
+}
+
 const AccountForms = props => (
     <div>
+      {errorMessage(props.signInState.errorMessage)}
       <Nav tabs>
         <NavItem>
           <NavLink
