@@ -1,4 +1,4 @@
-import ax from 'packs/axios'
+import ax from '../../packs/axios'
 
 export const signIn = () => (dispatch, getState) => {
 
