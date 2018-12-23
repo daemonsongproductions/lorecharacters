@@ -26,6 +26,6 @@ rvm:
 script:
   - bundle exec rails db:migrate RAILS_ENV=test
   - bundle exec rspec
-  - bin/yest
+  - yarn test
 services:
   - redis-server
