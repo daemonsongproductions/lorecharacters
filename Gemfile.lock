@@ -71,6 +71,7 @@ GEM
     chromedriver-helper (2.1.0)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
+    coderay (1.1.2)
     concurrent-ruby (1.1.3)
     connection_pool (2.2.2)
     crass (1.0.4)
@@ -84,6 +85,13 @@ GEM
     dotenv (2.5.0)
     erubi (1.7.1)
     execjs (2.7.0)
+    factory_bot (4.11.1)
+      activesupport (>= 3.0.0)
+    factory_bot_rails (4.11.1)
+      factory_bot (~> 4.11.1)
+      railties (>= 3.0.0)
+    faker (1.9.1)
+      i18n (>= 0.7)
     ffi (1.9.25)
     foreman (0.63.0)
       dotenv (>= 0.7)
@@ -119,6 +127,14 @@ GEM
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
     pg (0.20.0)
+    pry (0.12.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    pry-byebug (3.6.0)
+      byebug (~> 10.0)
+      pry (~> 0.10)
+    pry-rails (0.3.8)
+      pry (>= 0.10.4)
     public_suffix (3.0.3)
     puma (3.12.0)
     rack (2.0.6)
@@ -246,10 +262,14 @@ DEPENDENCIES
   chromedriver-helper
   devise
   dotenv
+  factory_bot_rails
+  faker
   foreman
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   pg
+  pry-byebug
+  pry-rails
   puma (~> 3.11)
   rails (~> 5.2.1, >= 5.2.1.1)
   react-rails

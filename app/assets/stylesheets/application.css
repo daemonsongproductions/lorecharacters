@@ -10,12 +10,12 @@
 
 /* Core - this is what the bower package will import
    ========================================================================== */
-@import "humble_kit.scss";
 
 
 /* Theme
    ========================================================================== */
 
+@import 'bootstrap/dist/css/bootstrap.min.css';
 @import "site/external.scss";
 @import "site/bg-testing";
 @import "site/testing.scss";
