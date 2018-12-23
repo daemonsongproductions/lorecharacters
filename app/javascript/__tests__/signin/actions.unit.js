@@ -38,35 +38,67 @@ describe('signIn', function() {
       });
     });
 
-    it('submits a sign on request to the server', function() {
+    test('submits a sign on request to the server', function() {
 
       const expectedActions = [
         { type: "SIGNING_IN", signingIn: true },
         { type: "SIGNED_IN" },
         { type: "SIGNING_IN", signingIn: false }
       ];
-      return store.dispatch(actions.signIn()).then(() => {
 
-        // return of async actions
-        expect(store.getActions()).toEqual(expectedActions);
+      moxios.wait(function() {
+        return store.dispatch(actions.signIn()).then(() => {
+          // return of async actions
+          expect(store.getActions()).toEqual(expectedActions);
 
-        let request = moxios.requests.first();
-        expect(request.url).toEqual(`/users/sign_in.json`);
-        expect(request.config.method).toEqual('post');
-        expect(JSON.parse(request.config.data).user.email).toEqual("test@test.com");
-        expect(JSON.parse(request.config.data).user.password).toEqual("password");
+          let request = moxios.requests.first();
+          expect(request.url).toEqual(`/users/sign_in.json`);
+          expect(request.config.method).toEqual('post');
+          expect(JSON.parse(request.config.data).user.email).toEqual("test@test.com");
+          expect(JSON.parse(request.config.data).user.password).toEqual("password");
+          done();
+        });
       });
     });
 
-    it('redirects back to home on success', function() {
 
-      return store.dispatch(actions.signIn()).then(() => {
-        expect(decodeURIComponent(window.location.href)).toBe('http://localhost/')
+    test('redirects back to home on success', function() {
+
+      moxios.wait(function() {
+        return store.dispatch(actions.signIn()).then(() => {
+          expect(decodeURIComponent(window.location.href)).toBe('http://localhost/')
+          done()
+        });
       });
     });
-
   });
 
+  describe('failure', function(){
+
+    beforeEach(function () {
+      moxios.stubRequest(`/users/sign_in.json`, {
+        status: 401,
+        response: {error: "Nope"}
+      });
+    });
+
+    test('passes the error message into the reducer', function() {
+
+      const expectedActions = [
+        { type: "SIGNING_IN", signingIn: true },
+        { type: "SIGN_IN_FAILURE", errorMessage: "Nope" },
+        { type: "SIGNING_IN", signingIn: false }
+      ];
+
+      moxios.wait(function() {
+        return store.dispatch(actions.signIn()).then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+          done();
+        });
+      });
+
+    });
+  });
 });
 
 
@@ -96,34 +128,70 @@ describe('submitRegistration', function() {
       });
     });
 
-    it('submits a registration request to the server', function() {
+    test('submits a registration request to the server', function() {
 
       const expectedActions = [
         { type: "REGISTERING", registering: true },
         { type: "REGISTERED", userId: '1', errorMessage: null },
         { type: "REGISTERING", registering: false }
       ];
-      return store.dispatch(actions.submitRegistration()).then(() => {
 
-        // return of async actions
-        expect(store.getActions()).toEqual(expectedActions);
+      moxios.wait(function() {
+        return store.dispatch(actions.submitRegistration()).then(() => {
 
-        let request = moxios.requests.first();
-        expect(request.url).toEqual(`/users.json`);
-        expect(request.config.method).toEqual('post');
-        expect(JSON.parse(request.config.data).user.email).toEqual("test@test.com");
-        expect(JSON.parse(request.config.data).user.password).toEqual("password");
-        expect(JSON.parse(request.config.data).user.password_confirmation).toEqual("password");
+          // return of async actions
+          expect(store.getActions()).toEqual(expectedActions);
+
+          let request = moxios.requests.first();
+          expect(request.url).toEqual(`/users.json`);
+          expect(request.config.method).toEqual('post');
+          expect(JSON.parse(request.config.data).user.email).toEqual("test@test.com");
+          expect(JSON.parse(request.config.data).user.password).toEqual("password");
+          expect(JSON.parse(request.config.data).user.password_confirmation).toEqual("password");
+          done();
+        });
+      });
+
+    });
+
+    test('redirects back to home on success', function() {
+
+      moxios.wait(function() {
+        return store.dispatch(actions.submitRegistration()).then(() => {
+          expect(decodeURIComponent(window.location.href)).toBe('http://localhost/')
+          done();
+        });
+      });
+
+    });
+
+  });
+
+  describe('failure', function(){
+
+    beforeEach(function () {
+      moxios.stubRequest(`/users.json`, {
+        status: 401,
+        response: {message: "Nope"}
       });
     });
 
-    it('redirects back to home on success', function() {
+    it('passes the error message into the reducer', function() {
 
-      return store.dispatch(actions.submitRegistration()).then(() => {
-        expect(decodeURIComponent(window.location.href)).toBe('http://localhost/')
+      const expectedActions = [
+        { type: "REGISTERING", signingIn: true },
+        { type: "REGISTRATION_FAILURE", errorMessage: "Nope" },
+        { type: "REGISTERING", signingIn: false }
+      ];
+
+      moxios.wait(function() {
+        return store.dispatch(actions.submitRegistration()).then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+          done();
+        });
       });
-    });
 
+    });
   });
 
 });
