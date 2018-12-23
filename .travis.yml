@@ -21,7 +21,7 @@
     - npm i -g yarn
     - yarn install
   before_script:
-    - cp config/database.yml.travis
+    - cp config/database.yml.travis database.yml
     - bundle exec rake db:create db:test:prepare
   script:
     - yarn test
