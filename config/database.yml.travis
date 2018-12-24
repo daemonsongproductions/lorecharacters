@@ -3,7 +3,6 @@ common: &common
   encoding: unicode
   pool: 5
   min_messages: WARNING
-  username: stitchfix_owner
 
 development:
   database: lorecharacters_dev

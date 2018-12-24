@@ -1,0 +1,32 @@
+
+  sudo: required
+  services:
+    - docker
+    - redis-server
+    - postgresql
+  language: ruby
+  cache:
+    bundler: true
+    yarn: true
+    directories:
+      - node_modules
+  addons:
+    postgresql: "9.6"
+    chrome: stable
+  rvm:
+    - 2.5.1
+  install:
+    - bundle install
+    - nvm install node
+    - node -v
+    - npm i -g yarn
+    - yarn install
+  before_script:
+    - cp config/database.yml.travis config/database.yml
+    - psql -c 'create database travis_ci_test;' -U postgres
+    - bundle exec rake db:create db:test:prepare
+  script:
+    - bundle exec rspec spec
+    - bin/jest
+  after_success:
+    - bundle exec rake assets:precompile
