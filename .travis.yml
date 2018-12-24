@@ -26,7 +26,7 @@
     - psql -c 'create database travis_ci_test;' -U postgres
     - bundle exec rake db:create db:test:prepare
   script:
-    - yarn test
     - bundle exec rspec spec
+    - bin/jest
   after_success:
     - bundle exec rake assets:precompile
