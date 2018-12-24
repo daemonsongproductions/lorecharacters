@@ -3,7 +3,7 @@ common: &common
   encoding: unicode
   pool: 5
   min_messages: WARNING
-  username: travis
+  username: travis_ci_test
 
 development:
   database: lorecharacters_dev
