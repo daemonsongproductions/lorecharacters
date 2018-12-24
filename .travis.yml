@@ -3,6 +3,7 @@
   services:
     - docker
     - redis-server
+    - postgresql
   language: ruby
   cache:
     bundler: true
