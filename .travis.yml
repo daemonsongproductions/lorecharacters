@@ -1,32 +1,38 @@
-
-  sudo: required
-  services:
-    - docker
-    - redis-server
-    - postgresql
-  language: ruby
-  cache:
-    bundler: true
-    yarn: true
-    directories:
-      - node_modules
-  addons:
-    postgresql: "9.6"
-    chrome: stable
-  rvm:
-    - 2.5.1
-  install:
-    - bundle install
-    - nvm install node
-    - node -v
-    - npm i -g yarn
-    - yarn install
-  before_script:
-    - cp config/database.yml.travis config/database.yml
-    - psql -c 'create database travis_ci_test;' -U postgres
-    - bundle exec rake db:create db:test:prepare
-  script:
-    - bundle exec rspec spec
-    - bin/jest
-  after_success:
-    - bundle exec rake assets:precompile
+sudo: required
+services:
+- docker
+- redis-server
+- postgresql
+language: ruby
+cache:
+  bundler: true
+  yarn: true
+  directories:
+  - node_modules
+addons:
+  postgresql: '9.6'
+  chrome: stable
+rvm:
+- 2.5.1
+install:
+- bundle install
+- nvm install node
+- node -v
+- npm i -g yarn
+- yarn install
+before_script:
+- cp config/database.yml.travis config/database.yml
+- psql -c 'create database travis_ci_test;' -U postgres
+- bundle exec rake db:create db:test:prepare
+script:
+- bundle exec rspec spec
+- bin/jest
+after_success:
+- bundle exec rake assets:precompile
+deploy:
+  provider: heroku
+  api_key:
+    secure: CvUlkkpT94IJlltZFvPRw+1zB6Tak129G4XWm7Q2dt/yMtCElClvDhPuqKmf9+daBkkWpCfgCTecgCPB2XiE2jdXKzYnckZwaJmL3ENCs4DCwHEDQQcmbU9WzWRnw5f0gXTB7nN2jZN48Mac5VlTxy7pulfBAoeAvPzfJ6EnV9ihdrZLmcFHR6JPlyvab6PCglQm8GHniSFhX5/QRgw0qav7sah5IIRzHTQKavDS2NLKmQfdTW8zYJw7bQqBxXBrisougr1JKENYW/JmcKWxIFAo+JsyrNn7l786FnDLE3kM3GWe/VXQ0GiYUDApQsP1i7L6Nne4H3QJUyfYhkMoR6S/4HZ9bw5YycKLBNjJcgDSJIdg+l8xTJkL4W6gkNLRj7VyFVTRzKDd2uzIa3QTTYSedrp6+rBF0CUjYMaMQc+nNY/Z0UINeQWePFM43tLie4V4aV/KdYJGn05gg8x8pA4sZSeHPVo+m388Q3XqjxUNm1rvhQv8tmKqdLpb/w4yS4IrY/9lkAe3teTFMJmyXa6CYN7YoClbHRpbP1+8lw3V6teTrLz/xqoqZvGTgfHdpNO1Z79kDo31VNFBLqhqQ1JPKn0hoC5AICg+xYWWTnnQWhtsYoMIUPgddwjDw7pmMlgBNGHQiQnWECF0JLbmH1Mn51T/Njv1KwgFD37CRMw=
+  app: lorecharacters
+  on:
+    repo: daemonsongproductions/lorecharacters
