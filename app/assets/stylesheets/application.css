@@ -1,13 +1,3 @@
-/* Custom variables
-   ========================================================================== */
-@import "custom_variables.scss";
-
-
-/* Fontawesome - I'm using fontawesome for icons. Big whoop. Wanna fight about it?
-   ========================================================================== */
-@import "fontawesome/css/font-awesome.css";
-
-
 /* Core - this is what the bower package will import
    ========================================================================== */
 
@@ -16,11 +6,6 @@
    ========================================================================== */
 
 @import 'bootstrap/dist/css/bootstrap.min.css';
-@import "site/external.scss";
-@import "site/bg-testing";
-@import "site/testing.scss";
-@import "site/bootstrap_js.scss";
-@import "site/modules/global_nav.scss";
 
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
