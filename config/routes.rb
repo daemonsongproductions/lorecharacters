@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
   get '/status', to: 'home#show', as: 'application_status'
   get '/sign_in', to: 'sign_in#show', as: 'sign_in'
+  get 'me', to: 'me#show'
+  resources :players, only: [:index, :show, :create, :update]
+
 
   resources :users, only: [:index]
 
