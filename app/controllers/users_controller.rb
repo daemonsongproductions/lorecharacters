@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     if user_signed_in?
       render json: {
           email: current_user.email,
+          name: Player.find_by(user_id: current_user.id),
           signed_in: true
       }
     else

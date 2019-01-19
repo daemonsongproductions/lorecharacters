@@ -1,8 +1,7 @@
 import React from "react"
 import {connect} from "react-redux"
-import {signUserOut} from './actions'
 import {fetchAccountInfo} from '../../shared/actions'
-import NavBar from './components/navBar'
+import Profile from './components/profile'
 
 const mapStateToProps = (
     state
@@ -16,28 +15,23 @@ const mapDispatchToProps = (
     dispatch
 ) => {
   return {
-    fetchAccountInfo: () => {
+    fetchPlayer: () => {
       dispatch(fetchAccountInfo())
-    },
-    signUserOut: () => {
-      dispatch(signUserOut());
     }
   }
 };
 
-const NavBarComponent = connect(
+const ProfileComponent = connect(
     mapStateToProps,
     mapDispatchToProps
-)(NavBar);
+)(Profile);
 
 
 
-export default class HeaderContainer extends React.Component {
+export default class PlayerContainer extends React.Component {
   render () {
     return(
-        <header className="cortana-header sb-slide">
-          <NavBarComponent/>
-        </header>
+        <ProfileComponent/>
     )
   }
 }
