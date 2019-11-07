@@ -1,7 +1,8 @@
 const defaultState =
     {
       fetchingPlayer: true,
-      player: {}
+      player: {},
+      editMode: false
     };
 
 
