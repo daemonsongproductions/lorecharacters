@@ -1,16 +1,5 @@
 import React from 'react'
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+import EditProfileForm from 'editProfileForm'
 
 export default class Profile extends React.Component {
 
@@ -20,12 +9,13 @@ export default class Profile extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchPlayer();
+
   }
 
   render() {
     return(
         <div>
+
         </div>
     )
   }

@@ -60,14 +60,6 @@ export const submitRegistration = () => (dispatch, getState) => {
 
 };
 
-export function handleFormChange(fieldName, fieldValue) {
-  return {
-    type: 'FORM_FIELD_CHANGE',
-    fieldName,
-    fieldValue
-  }
-};
-
 export function signingIn(signingIn) {
   return {
     type: 'SIGNING_IN',
