@@ -1,19 +1,29 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import moment from 'moment'
+import ax from '../../../packs/axios';
 
-export default class ApplicationStatus extends React.Component {
 
-  render() {
-    return(
-      <div>
-        <p>The time is {moment(this.props.landingState.time).format('MMMM Do YYYY, h:mm:ss a')}.</p>
-        <p>System status is {this.props.landingState.status}.</p>
-      </div>
-    )
+export default function ApplicationStatus() {
+
+  const [time, setTime] = useState(null);
+  const [status, setStatus] = useState(null);
+
+
+  async function fetchDate() {
+    const response = await ax.get(`/status.json`);
+    setTime(response.data.time);
+    setStatus(response.data.status);
   }
 
-  componentDidMount() {
-    this.props.fetchDate();
-  }
 
+  useEffect(() => {
+    fetchDate();
+  }, []);
+
+  return(
+    <div>
+      <p>The time is {moment(time).format('MMMM Do YYYY, h:mm:ss a')}.</p>
+      <p>System status is {status}.</p>
+    </div>
+  );
 }

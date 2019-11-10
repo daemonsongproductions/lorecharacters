@@ -1,21 +1,50 @@
-import React from 'react'
+import React, {useState} from 'react'
 import TextInput from '../../../shared/components/textInput'
 import {Button, Form } from 'reactstrap';
+import ax from '../../../packs/axios';
 
 
-const RegistrationForm = ({signInState, submit, handleFormChange}) => (
-    <Form className={"m-3"}>
-      <TextInput handleChange={(newValue) => handleFormChange('email', newValue)}
-                 id={"registrationEmail"} name={"email"}
-                 label={"Email"} type={'email'} value={signInState.formData.email} placeholder={'Email'} />
-      <TextInput handleChange={(newValue) => handleFormChange('password', newValue)}
-                 id={"registrationPassword"} name={"password"}
-                 label={"Password"} type={'password'} value={signInState.formData.password} placeholder={'Choose a password'} />
-      <TextInput handleChange={(newValue) => handleFormChange('confirmPassword', newValue)}
-                 id={"confirmPassword"} name={"confirmPassword"}
-                 label={"Password"} type={'password'} value={signInState.formData.confirmPassword} placeholder={'Retype password'} />
-      <Button onClick={submit}>Submit</Button>
-    </Form>
-);
+export default function RegistrationForm({setErrorMessage}) {
 
-export default RegistrationForm;
+  const [formData, setFormData] = useState({});
+
+  function handleFormChange(fieldName, fieldValue) {
+    const newFormState = { ...formData };
+
+    newFormState[fieldName] = fieldValue;
+    setFormData(newFormState);
+  }
+
+  function submitRegistration() {
+
+    try{
+      ax.post('/users.json', {
+        user: {
+          email: formData.email,
+          password: formData.password,
+          password_confirmation: formData.confirmPassword
+        }
+      });
+
+      window.location.href="/";
+    } catch(error) {
+      setErrorMessage(error.response.data.message);
+    }
+
+  }
+
+  return (
+      <Form className={"m-3"}>
+        <TextInput handleChange={(newValue) => handleFormChange('email', newValue)}
+                   id={"registrationEmail"} name={"email"}
+                   label={"Email"} type={'email'} value={formData.email} placeholder={'Email'} />
+        <TextInput handleChange={(newValue) => handleFormChange('password', newValue)}
+                   id={"registrationPassword"} name={"password"}
+                   label={"Password"} type={'password'} value={formData.password} placeholder={'Choose a password'} />
+        <TextInput handleChange={(newValue) => handleFormChange('confirmPassword', newValue)}
+                   id={"confirmPassword"} name={"confirmPassword"}
+                   label={"Password"} type={'password'} value={formData.confirmPassword} placeholder={'Retype password'} />
+        <Button onClick={submitRegistration}>Submit</Button>
+      </Form>
+  )
+}
