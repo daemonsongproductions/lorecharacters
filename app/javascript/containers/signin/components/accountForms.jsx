@@ -10,7 +10,7 @@ import SignInForm from './signInForm';
 
 export default function AccountForms() {
 
-  const [activeFormId, setActiveFormId] = useState(1);
+  const [activeFormId, setActiveFormId] = useState('1');
   const [errorMessage, setErrorMessage] = useState(null);
 
 
