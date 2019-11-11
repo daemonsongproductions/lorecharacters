@@ -15,7 +15,7 @@ import {
 
 export default function NavBar() {
   const [fetchingAccount, setfetchingAccount] = useState(false);
-  const [accountInfo, setAccountInfo] = useState(null);
+  const [accountInfo, setAccountInfo] = useState({signedIn: false});
   const [isOpen, setIsOpen] = useState(false);
 
   async function fetchAccountInfo() {
@@ -39,7 +39,7 @@ export default function NavBar() {
   }
 
   function toggleDropdown() {
-    setIsOpen(!isOpen);
+    //setIsOpen(!isOpen);
   }
 
   function accountDropdownText() {
@@ -84,7 +84,7 @@ export default function NavBar() {
       <div>
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">Lore Character Builder</NavbarBrand>
-          <NavbarToggler onClick={toggleDropdown()} />
+          <NavbarToggler />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>

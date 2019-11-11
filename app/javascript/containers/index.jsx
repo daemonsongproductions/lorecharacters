@@ -10,21 +10,15 @@ let store = configureStore({});
 
 
 const landing = (
-    <Provider store={store}>
       <LandingContainer/>
-    </Provider>
 );
 
 const header = (
-    <Provider store={store}>
       <HeaderContainer/>
-    </Provider>
 );
 
 const signin = (
-    <Provider store={store}>
       <SignInContainer/>
-    </Provider>
 );
 
 
