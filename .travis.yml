@@ -13,7 +13,7 @@ addons:
   postgresql: '9.6'
   chrome: stable
 rvm:
-- 2.5.1
+- 2.6.5
 install:
 - bundle install
 - nvm install node

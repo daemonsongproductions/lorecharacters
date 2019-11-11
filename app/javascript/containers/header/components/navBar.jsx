@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {
   Collapse,
   Navbar,
@@ -11,83 +11,95 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
+  import ax from '../../../packs/axios';
 
-export default class NavBar extends React.Component {
+export default function NavBar() {
+  const [fetchingAccount, setfetchingAccount] = useState(false);
+  const [accountInfo, setAccountInfo] = useState({signedIn: false});
+  const [isOpen, setIsOpen] = useState(false);
 
+  async function fetchAccountInfo() {
 
-  constructor(props) {
-    super(props);
+    setfetchingAccount(true);
 
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
+    try {
+      const response = await ax.get(`/users.json`);
+      setAccountInfo({email: response.data.email, signedIn: response.data.signed_in});
+      setfetchingAccount(false);
+    } catch (error) {
+      console.log(error);
+      setfetchingAccount(false);
+    }
   }
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
+
+  async function signUserOut() {
+    await ax.delete('/users/sign_out.json')
+    window.location.href="/"
+
   }
 
-  accountDropdownText() {
-    if(this.userSignedIn()) {
-      return this.props.headerState.email
+  function toggleDropdown() {
+    //setIsOpen(!isOpen);
+  }
+
+  function accountDropdownText() {
+    if(userSignedIn()) {
+      return accountInfo.email
     } else {
       return "Account"
     }
   }
 
-  accoundDropdownOptions() {
-    if(this.userSignedIn()) {
+  function accoundDropdownOptions() {
+    if(userSignedIn()) {
       return(
-        <DropdownMenu right>
-          <DropdownItem>
-            <NavLink onClick={this.props.signUserOut}>Sign out</NavLink>
-          </DropdownItem>
-        </DropdownMenu>
+          <DropdownMenu right>
+            <DropdownItem>
+              <NavLink onClick={signUserOut}>Sign out</NavLink>
+            </DropdownItem>
+          </DropdownMenu>
       )
 
     } else {
-     return(
-       <DropdownMenu right>
-         <DropdownItem>
-           <NavLink href="/sign_in/">Sign In</NavLink>
-         </DropdownItem>
-       </DropdownMenu>
-     )
+      return(
+          <DropdownMenu right>
+            <DropdownItem>
+              <NavLink href="/sign_in/">Sign In</NavLink>
+            </DropdownItem>
+          </DropdownMenu>
+      )
     }
   }
 
-  userSignedIn() {
-    return this.props.headerState.signedIn
+  function userSignedIn() {
+    return accountInfo.signedIn
   }
 
-  componentDidMount() {
-    this.props.fetchAccountInfo();
-  }
+  useEffect(() => {
+    fetchAccountInfo();
+  }, []);
 
-  render() {
-    return(
-        <div>
-          <Navbar color="light" light expand="md">
-            <NavbarBrand href="/">Lore Character Builder</NavbarBrand>
-            <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className="ml-auto" navbar>
-                <NavItem>
-                  <NavLink href="http://lorelarp.net">Lore Larp</NavLink>
-                </NavItem>
-                <UncontrolledDropdown nav inNavbar>
-                  <DropdownToggle nav caret>
-                    {this.accountDropdownText()}
-                  </DropdownToggle>
-                  {this.accoundDropdownOptions()}
-                </UncontrolledDropdown>
-              </Nav>
-            </Collapse>
-          </Navbar>
-        </div>
-    )
-  }
+
+  return(
+      <div>
+        <Navbar color="light" light expand="md">
+          <NavbarBrand href="/">Lore Character Builder</NavbarBrand>
+          <NavbarToggler />
+          <Collapse isOpen={isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink href="http://lorelarp.net">Lore Larp</NavLink>
+              </NavItem>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  {accountDropdownText()}
+                </DropdownToggle>
+                {accoundDropdownOptions()}
+              </UncontrolledDropdown>
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </div>
+  )
 
 }
