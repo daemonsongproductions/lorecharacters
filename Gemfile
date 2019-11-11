@@ -20,7 +20,7 @@ gem 'rails_12factor'
 gem 'react-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'webpacker', '3.0.2'
+gem 'webpacker', '~> 4.x'
 gem 'webpacker-react'
 
 # Use Redis adapter to run Action Cable in production
@@ -35,6 +35,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
   gem 'pry-byebug'
+  gem 'rb-readline'
 end
 
 group :development do
