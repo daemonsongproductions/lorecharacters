@@ -6,7 +6,7 @@ import ax from '../../../packs/axios';
 
 export default function RegistrationForm({setErrorMessage}) {
 
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({email: "", password: "", password_confirmation: ""});
 
   function handleFormChange(fieldName, fieldValue) {
     const newFormState = { ...formData };
