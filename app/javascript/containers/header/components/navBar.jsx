@@ -38,10 +38,6 @@ export default function NavBar() {
 
   }
 
-  function toggleDropdown() {
-    //setIsOpen(!isOpen);
-  }
-
   function accountDropdownText() {
     if(userSignedIn()) {
       return accountInfo.email
