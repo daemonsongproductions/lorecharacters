@@ -40,6 +40,42 @@ CREATE TABLE public.ar_internal_metadata (
 
 
 --
+-- Name: characters; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.characters (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    available_event_points integer DEFAULT 0 NOT NULL,
+    available_experience_points integer DEFAULT 0 NOT NULL,
+    total_experience_points integer DEFAULT 0 NOT NULL,
+    level integer DEFAULT 1 NOT NULL,
+    player_id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: characters_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.characters_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: characters_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.characters_id_seq OWNED BY public.characters.id;
+
+
+--
 -- Name: players; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -117,6 +153,13 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
+-- Name: characters id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.characters ALTER COLUMN id SET DEFAULT nextval('public.characters_id_seq'::regclass);
+
+
+--
 -- Name: players id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -136,6 +179,14 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 ALTER TABLE ONLY public.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: characters characters_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.characters
+    ADD CONSTRAINT characters_pkey PRIMARY KEY (id);
 
 
 --
@@ -160,6 +211,13 @@ ALTER TABLE ONLY public.schema_migrations
 
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_characters_on_player_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_characters_on_player_id ON public.characters USING btree (player_id);
 
 
 --
@@ -193,6 +251,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181204010605'),
 ('20190112224240'),
 ('20191127174817'),
-('20191127182634');
+('20191127182634'),
+('20191127183239');
 
 
