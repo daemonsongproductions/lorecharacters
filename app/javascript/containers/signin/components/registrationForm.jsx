@@ -26,7 +26,7 @@ export default function RegistrationForm({setErrorMessage}) {
         }
       });
 
-      window.location.href="/";
+      window.location.href="/me";
     } catch(error) {
       setErrorMessage(error.response.data.message);
     }

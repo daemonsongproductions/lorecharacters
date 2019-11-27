@@ -1,13 +1,9 @@
 import React from 'react'
 import { render } from 'react-dom'
-import {Provider} from 'react-redux'
-import configureStore from './store/configureStore'
 import LandingContainer from "./landing/landingContainer";
 import HeaderContainer from "./header/headerContainer";
 import SignInContainer from './signin/signInContainer';
 import PlayerContainer from './player/playerContainer';
-
-let store = configureStore({});
 
 
 const landing = (
@@ -23,9 +19,7 @@ const signin = (
 );
 
 const player = (
-    <Provider store={store}>
       <PlayerContainer/>
-    </Provider>
 );
 
 

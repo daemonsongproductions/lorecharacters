@@ -23,7 +23,7 @@ export default function NavBar() {
     setfetchingAccount(true);
 
     try {
-      const response = await ax.get(`/users.json`);
+      const response = await ax.get(`/me.json`);
       setAccountInfo({email: response.data.email, signedIn: response.data.signed_in});
       setfetchingAccount(false);
     } catch (error) {
