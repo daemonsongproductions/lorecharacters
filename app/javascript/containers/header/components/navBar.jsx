@@ -51,6 +51,9 @@ export default function NavBar() {
       return(
           <DropdownMenu right>
             <DropdownItem>
+              <NavLink href="/me/">Profile</NavLink>
+            </DropdownItem>
+            <DropdownItem>
               <NavLink onClick={signUserOut}>Sign out</NavLink>
             </DropdownItem>
           </DropdownMenu>
