@@ -29,9 +29,6 @@ export default function ShowProfile({playerName, availableEventPoints, available
             </div>
             <div className="row">
               <div className="col-sm-6">
-                Available Event Points: {availableEventPoints}
-              </div>
-              <div className="col-sm-6">
                 Available Lore Points: {availableLorePoints}
               </div>
             </div>
