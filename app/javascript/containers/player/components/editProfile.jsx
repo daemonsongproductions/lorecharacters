@@ -4,7 +4,7 @@ import TextInput from "../../../shared/components/textInput";
 import ax from "../../../packs/axios";
 
 
-export default function EditProfile({playerName, playerId, updateProfileData, setErrorMessage}) {
+export default function EditProfile({playerName, playerId, updateProfileData, setErrorMessage, setEditable}) {
 
   const [formData, setFormData] = useState({name: playerName, id: playerId});
 
@@ -16,19 +16,23 @@ export default function EditProfile({playerName, playerId, updateProfileData, se
     setFormData(newFormState);
   }
 
+  function cancelEdit() {
+    setEditable(false);
+  }
 
   async function updatePlayer() {
 
-
     try{
-      ax.put(`/players/${formData.id}.json`, {
+      await ax.put(`/players/${formData.id}.json`, {
         player: {
           id: formData.id,
           name: formData.name
         }
       });
 
-      updateProfileData(name);
+      updateProfileData(formData.name);
+      setEditable(false);
+
     } catch(error) {
       setErrorMessage(error.response.data.message);
     }
@@ -41,6 +45,7 @@ export default function EditProfile({playerName, playerId, updateProfileData, se
                    id={"playerName"} name={"name"}
                    label={"Your name (or whatever we know you by)"} type={'text'} value={formData.name}
                    placeholder={'Name'}/>
+        <Button onClick={cancelEdit}>Cancel</Button>
         <Button onClick={updatePlayer}>Submit</Button>
       </Form>
   )

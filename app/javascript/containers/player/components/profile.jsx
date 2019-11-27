@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import EditProfile from "./editProfile";
+import ShowProfile from './showProfile';
 import ax from "../../../packs/axios";
 import {Alert} from "reactstrap";
 
 export default function Profile() {
 
   const [player, setPlayer] = useState({id: null, user_id: null, email: "", name: ""});
+  const [editable, setEditable] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
   async function fetchProfileInfo() {
@@ -21,20 +23,22 @@ export default function Profile() {
   }
 
   function updateProfileData(name) {
-    const newPlayerState = { ...player };
-    newPlayerState['name'] = name;
-    setPlayer(newPlayerState);
+    setPlayer({
+      ...player,
+      ['name']: name
+    });
   }
 
   function displayMode() {
 
-    if (player.name) {
-      return <div>Hi</div>
-    } else if (player.id && !player.name) {
+    if (player.name && !editable) {
+      return <ShowProfile playerName={player.name} setEditable={setEditable} />
+    } else if (player.id && (!player.name || editable)) {
       return <EditProfile playerId={player.id}
                           playerName={player.name}
                           updateProfileData={updateProfileData}
-                          setErrorMessage={setErrorMessage} />
+                          setErrorMessage={setErrorMessage}
+                          setEditable={setEditable} />
     }
 
   }
