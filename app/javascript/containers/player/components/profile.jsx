@@ -6,7 +6,9 @@ import {Alert} from "reactstrap";
 
 export default function Profile() {
 
-  const [player, setPlayer] = useState({id: null, user_id: null, email: "", name: ""});
+  const [player, setPlayer] = useState({id: null,
+    user_id: null, email: "",
+    name: "", available_event_points: 0, available_lore_points: 0});
   const [editable, setEditable] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -16,7 +18,9 @@ export default function Profile() {
       setPlayer({id: response.data.id,
         user_id: response.data.user_id,
         name: response.data.name,
-        email: response.data.email});
+        email: response.data.email,
+        available_event_points: response.data.available_event_points,
+        available_lore_points: response.data.available_lore_points});
     } catch (error) {
       console.log(error);
     }
@@ -32,7 +36,10 @@ export default function Profile() {
   function displayMode() {
 
     if (player.name && !editable) {
-      return <ShowProfile playerName={player.name} setEditable={setEditable} />
+      return <ShowProfile playerName={player.name}
+                          availableEventPoints={player.available_event_points}
+                          availableLorePoints={player.available_lore_points}
+                          setEditable={setEditable} />
     } else if (player.id && (!player.name || editable)) {
       return <EditProfile playerId={player.id}
                           playerName={player.name}
