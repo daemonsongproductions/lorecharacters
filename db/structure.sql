@@ -5,6 +5,7 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
@@ -47,7 +48,9 @@ CREATE TABLE public.players (
     user_id integer NOT NULL,
     name character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    available_event_points integer DEFAULT 0 NOT NULL,
+    available_lore_points integer DEFAULT 0 NOT NULL
 );
 
 
@@ -189,6 +192,7 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20181204010605'),
-('20190112224240');
+('20190112224240'),
+('20191127174817');
 
 

@@ -2,7 +2,7 @@ import React from 'react'
 import {Button, Card, CardBody, CardText, CardTitle} from "reactstrap";
 
 
-export default function ShowProfile({playerName, setEditable}) {
+export default function ShowProfile({playerName, availableEventPoints, availableLorePoints, setEditable}) {
 
   function edit() {
     setEditable(true);
@@ -25,6 +25,14 @@ export default function ShowProfile({playerName, setEditable}) {
             <div class="row">
               <div className="col-sm-6">
                 Name: {playerName}
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-sm-6">
+                Available Event Points: {availableEventPoints}
+              </div>
+              <div className="col-sm-6">
+                Available Lore Points: {availableLorePoints}
               </div>
             </div>
           </CardText>
