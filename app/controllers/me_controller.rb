@@ -13,7 +13,6 @@ class MeController < ApplicationController
               user_id: current_user.id,
               email: current_user.email,
               name: player.try(:name),
-              available_event_points: player.try(:available_event_points),
               available_lore_points: player.try(:available_lore_points),
               signed_in: true
           }

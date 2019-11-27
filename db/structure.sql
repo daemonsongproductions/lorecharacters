@@ -49,7 +49,6 @@ CREATE TABLE public.players (
     name character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    available_event_points integer DEFAULT 0 NOT NULL,
     available_lore_points integer DEFAULT 0 NOT NULL
 );
 
@@ -193,6 +192,7 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20181204010605'),
 ('20190112224240'),
-('20191127174817');
+('20191127174817'),
+('20191127182634');
 
 
