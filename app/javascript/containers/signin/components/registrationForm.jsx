@@ -15,10 +15,10 @@ export default function RegistrationForm({setErrorMessage}) {
     setFormData(newFormState);
   }
 
-  function submitRegistration() {
+  async function submitRegistration() {
 
     try{
-      ax.post('/users.json', {
+      await ax.post('/users.json', {
         user: {
           email: formData.email,
           password: formData.password,
