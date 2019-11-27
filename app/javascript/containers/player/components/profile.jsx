@@ -57,9 +57,11 @@ export default function Profile() {
   }, []);
 
   return (
-      <div>
-        {displayErrorMessage(errorMessage)}
-        {displayMode()}
+      <div className="row">
+        <div className="col-sm-6">
+          {displayErrorMessage(errorMessage)}
+          {displayMode()}
+        </div>
       </div>
   )
 

@@ -15,4 +15,7 @@
  *= require bootstrap/dist/css/bootstrap.css
  */
 
+.btn {
+    margin-left: .5em;
+}
 

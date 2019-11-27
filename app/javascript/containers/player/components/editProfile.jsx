@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Button, Form} from "reactstrap";
+import {Button, Form, Card, CardBody, CardTitle, CardText} from "reactstrap";
 import TextInput from "../../../shared/components/textInput";
 import ax from "../../../packs/axios";
 
@@ -40,14 +40,22 @@ export default function EditProfile({playerName, playerId, updateProfileData, se
   }
 
   return(
-      <Form className={"m-3"}>
-        <TextInput handleChange={(newValue) => handleFormChange('name', newValue)}
-                   id={"playerName"} name={"name"}
-                   label={"Your name (or whatever we know you by)"} type={'text'} value={formData.name}
-                   placeholder={'Name'}/>
-        <Button onClick={cancelEdit}>Cancel</Button>
-        <Button onClick={updatePlayer}>Submit</Button>
-      </Form>
+      <Card>
+        <CardBody>
+          <CardTitle>Profile</CardTitle>
+          <CardText>
+            <Form className={"m-3"}>
+              <TextInput handleChange={(newValue) => handleFormChange('name', newValue)}
+                         id={"playerName"} name={"name"}
+                         label={"Your name (or whatever we know you by)"} type={'text'} value={formData.name}
+                         placeholder={'Name'}/>
+              <Button onClick={cancelEdit} color="secondary">Cancel</Button>
+              <Button onClick={updatePlayer} color="primary">Submit</Button>
+            </Form>
+          </CardText>
+        </CardBody>
+      </Card>
+
   )
 
 }

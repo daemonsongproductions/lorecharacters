@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button} from "reactstrap";
+import {Button, Card, CardBody, CardText, CardTitle} from "reactstrap";
 
 
 export default function ShowProfile({playerName, setEditable}) {
@@ -9,10 +9,27 @@ export default function ShowProfile({playerName, setEditable}) {
   }
 
   return(
-      <div>
-        Name: {playerName}
-        <Button onClick={edit}>Edit Profile</Button>
-      </div>
+      <Card>
+        <CardBody>
+          <CardTitle>
+            <div class="row">
+              <div className="col-sm-8">
+                Profile
+              </div>
+              <div className="col-sm-4">
+                <Button outline color="secondary" size="sm" onClick={edit}>Edit Profile</Button>
+              </div>
+            </div>
+          </CardTitle>
+          <CardText>
+            <div class="row">
+              <div className="col-sm-6">
+                Name: {playerName}
+              </div>
+            </div>
+          </CardText>
+        </CardBody>
+      </Card>
   )
 
 }
