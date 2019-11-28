@@ -10,6 +10,7 @@ gem 'rails', '~> 5.2.1', '>= 5.2.1.1'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'brakeman'
+gem 'cancancan'
 gem 'devise'
 gem 'dotenv'
 gem 'foreman'

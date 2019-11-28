@@ -4,6 +4,7 @@ import LandingContainer from "./landing/landingContainer";
 import HeaderContainer from "./header/headerContainer";
 import SignInContainer from './signin/signInContainer';
 import PlayerContainer from './player/playerContainer';
+import AdminContainer from './admin/adminContainer';
 
 
 const landing = (
@@ -22,6 +23,10 @@ const player = (
       <PlayerContainer/>
 );
 
+const admin = (
+    <AdminContainer/>
+);
+
 
 render(header, document.getElementById('lorecharacters-header'));
 
@@ -34,6 +39,10 @@ if(document.getElementById('lorecharacters-signin-form')) {
 
 if(document.getElementById('lorecharacters-player')) {
   render(player, document.getElementById('lorecharacters-player'));
+}
+
+if(document.getElementById('lorecharacters-admin')) {
+  render(admin, document.getElementById('lorecharacters-admin'));
 }
 
 

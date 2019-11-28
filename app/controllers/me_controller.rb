@@ -14,7 +14,8 @@ class MeController < ApplicationController
               email: current_user.email,
               name: player.try(:name),
               available_lore_points: player.try(:available_lore_points),
-              signed_in: true
+              signed_in: true,
+              admin: current_user.admin
           }
         }
       end
