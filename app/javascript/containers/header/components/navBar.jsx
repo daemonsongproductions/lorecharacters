@@ -15,7 +15,7 @@ import {
 
 export default function NavBar() {
   const [fetchingAccount, setfetchingAccount] = useState(false);
-  const [accountInfo, setAccountInfo] = useState({signedIn: false});
+  const [accountInfo, setAccountInfo] = useState({signedIn: false, admin: false});
   const [isOpen, setIsOpen] = useState(false);
 
   async function fetchAccountInfo() {
@@ -24,7 +24,7 @@ export default function NavBar() {
 
     try {
       const response = await ax.get(`/me.json`);
-      setAccountInfo({email: response.data.email, signedIn: response.data.signed_in});
+      setAccountInfo({email: response.data.email, signedIn: response.data.signed_in, admin: response.data.admin});
       setfetchingAccount(false);
     } catch (error) {
       console.log(error);
@@ -46,6 +46,16 @@ export default function NavBar() {
     }
   }
 
+  function adminDropdownItem() {
+    if(userIsAdmin()) {
+      return(
+          <DropdownItem>
+            <NavLink href="/admin/">Admin Dashboard</NavLink>
+          </DropdownItem>
+      )
+    }
+  }
+
   function accoundDropdownOptions() {
     if(userSignedIn()) {
       return(
@@ -53,6 +63,7 @@ export default function NavBar() {
             <DropdownItem>
               <NavLink href="/me/">Profile</NavLink>
             </DropdownItem>
+            {adminDropdownItem()}
             <DropdownItem>
               <NavLink onClick={signUserOut}>Sign out</NavLink>
             </DropdownItem>
@@ -72,6 +83,10 @@ export default function NavBar() {
 
   function userSignedIn() {
     return accountInfo.signedIn
+  }
+
+  function userIsAdmin() {
+    return accountInfo.admin;
   }
 
   useEffect(() => {
