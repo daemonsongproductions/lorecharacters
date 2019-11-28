@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import EditProfile from "./editProfile";
 import ShowProfile from './showProfile';
+import CharacterList from './characterList';
 import ax from "../../../packs/axios";
-import {Alert} from "reactstrap";
+import {Alert, Row, Col} from "reactstrap";
 
 export default function Profile() {
 
@@ -61,12 +62,20 @@ export default function Profile() {
   }, []);
 
   return (
-      <div className="row">
-        <div className="col-sm-6">
-          {displayErrorMessage(errorMessage)}
-          {displayMode()}
+      <section>
+        <div className="row">
+          <div className="col-sm-6">
+            {displayErrorMessage(errorMessage)}
+            {displayMode()}
+          </div>
         </div>
-      </div>
+        <Row>
+          <Col sm="12">
+            <CharacterList playerId={player.id}/>
+          </Col>
+        </Row>
+      </section>
+
   )
 
 }

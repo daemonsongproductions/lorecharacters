@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/sign_in', to: 'sign_in#show', as: 'sign_in'
   get 'me', to: 'me#show'
   resources :players, only: [:index, :show, :create, :update]
+  resources :characters, only: [:index, :show, :create, :update]
 
 
   resources :users, only: [:index]
